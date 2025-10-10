@@ -86,11 +86,11 @@ const StaffModal = ({ staff, isOpen, onClose, onSave }) => {
 
   if (!isOpen) return null
 
-  return (
+return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
+      <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] flex flex-col overflow-hidden">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+        <div className="flex items-center justify-between p-6 border-b border-gray-200 flex-shrink-0">
           <div className="flex items-center space-x-4">
             {staff && (
               <div className="h-12 w-12 bg-gradient-to-br from-secondary-500 to-primary-700 rounded-full flex items-center justify-center text-white font-semibold">
@@ -118,9 +118,8 @@ const StaffModal = ({ staff, isOpen, onClose, onSave }) => {
             <ApperIcon name="X" className="h-5 w-5 text-gray-500" />
           </button>
         </div>
-
-        {/* Content */}
-        <div className="p-6 overflow-y-auto max-h-[70vh] scrollbar-thin">
+{/* Content */}
+        <div className="p-6 overflow-y-auto flex-1 scrollbar-thin">
           <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <FormField
@@ -220,9 +219,8 @@ const StaffModal = ({ staff, isOpen, onClose, onSave }) => {
             )}
           </div>
         </div>
-
-        {/* Footer */}
-        <div className="flex items-center justify-end space-x-3 p-6 border-t border-gray-200 bg-gray-50">
+{/* Footer */}
+        <div className="flex items-center justify-end space-x-3 p-6 border-t border-gray-200 bg-gray-50 flex-shrink-0">
           <Button
             variant="secondary"
             onClick={onClose}
