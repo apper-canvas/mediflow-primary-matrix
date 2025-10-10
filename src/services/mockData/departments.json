@@ -1,0 +1,74 @@
+[
+  {
+    "Id": 1,
+    "name": "Emergency Department",
+    "type": "Emergency",
+    "totalBeds": 25,
+    "availableBeds": 8,
+    "headOfDepartment": "Dr. Sarah Williams",
+    "contactExtension": "911"
+  },
+  {
+    "Id": 2,
+    "name": "Intensive Care Unit",
+    "type": "ICU",
+    "totalBeds": 12,
+    "availableBeds": 3,
+    "headOfDepartment": "Dr. Michael Johnson",
+    "contactExtension": "2001"
+  },
+  {
+    "Id": 3,
+    "name": "Cardiology Ward",
+    "type": "Cardiology",
+    "totalBeds": 20,
+    "availableBeds": 7,
+    "headOfDepartment": "Dr. John Smith",
+    "contactExtension": "2201"
+  },
+  {
+    "Id": 4,
+    "name": "Pediatric Ward",
+    "type": "Pediatrics",
+    "totalBeds": 15,
+    "availableBeds": 9,
+    "headOfDepartment": "Dr. Lisa Davis",
+    "contactExtension": "3001"
+  },
+  {
+    "Id": 5,
+    "name": "Surgery Department",
+    "type": "Surgery",
+    "totalBeds": 8,
+    "availableBeds": 2,
+    "headOfDepartment": "Dr. Michael Johnson",
+    "contactExtension": "2501"
+  },
+  {
+    "Id": 6,
+    "name": "Orthopedic Ward",
+    "type": "Orthopedics",
+    "totalBeds": 18,
+    "availableBeds": 11,
+    "headOfDepartment": "Dr. Amanda Taylor",
+    "contactExtension": "4001"
+  },
+  {
+    "Id": 7,
+    "name": "General Medicine",
+    "type": "General Medicine",
+    "totalBeds": 30,
+    "availableBeds": 14,
+    "headOfDepartment": "Dr. Sarah Williams",
+    "contactExtension": "1001"
+  },
+  {
+    "Id": 8,
+    "name": "Radiology Department",
+    "type": "Radiology",
+    "totalBeds": 0,
+    "availableBeds": 0,
+    "headOfDepartment": "James Wilson",
+    "contactExtension": "5001"
+  }
+]

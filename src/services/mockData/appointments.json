@@ -1,0 +1,80 @@
+[
+  {
+    "Id": 1,
+    "patientId": 1,
+    "doctorId": 1,
+    "patientName": "John Doe",
+    "doctorName": "Dr. Smith",
+    "dateTime": "2024-01-15T09:00:00Z",
+    "duration": 30,
+    "type": "Consultation",
+    "reason": "Follow-up checkup",
+    "status": "Scheduled",
+    "notes": "Regular checkup for hypertension"
+  },
+  {
+    "Id": 2,
+    "patientId": 2,
+    "doctorId": 2,
+    "patientName": "Sarah Johnson",
+    "doctorName": "Dr. Williams",
+    "dateTime": "2024-01-15T10:30:00Z",
+    "duration": 45,
+    "type": "Consultation",
+    "reason": "Annual physical exam",
+    "status": "Scheduled",
+    "notes": "Annual health assessment"
+  },
+  {
+    "Id": 3,
+    "patientId": 3,
+    "doctorId": 3,
+    "patientName": "Michael Chen",
+    "doctorName": "Dr. Johnson",
+    "dateTime": "2024-01-15T14:00:00Z",
+    "duration": 60,
+    "type": "Surgery",
+    "reason": "Cardiac procedure",
+    "status": "In Progress",
+    "notes": "Cardiac catheterization procedure"
+  },
+  {
+    "Id": 4,
+    "patientId": 4,
+    "doctorId": 1,
+    "patientName": "Emily Davis",
+    "doctorName": "Dr. Smith",
+    "dateTime": "2024-01-14T11:00:00Z",
+    "duration": 30,
+    "type": "Follow-up",
+    "reason": "Post-surgery follow-up",
+    "status": "Completed",
+    "notes": "Recovery assessment completed"
+  },
+  {
+    "Id": 5,
+    "patientId": 5,
+    "doctorId": 2,
+    "patientName": "Robert Wilson",
+    "doctorName": "Dr. Williams",
+    "dateTime": "2024-01-16T08:30:00Z",
+    "duration": 30,
+    "type": "Consultation",
+    "reason": "Arthritis management",
+    "status": "Scheduled",
+    "notes": "Joint pain evaluation"
+  },
+  {
+    "Id": 6,
+    "patientId": 1,
+    "doctorId": 2,
+    "patientName": "John Doe",
+    "doctorName": "Dr. Williams",
+    "dateTime": "2024-01-15T15:30:00Z",
+    "duration": 30,
+    "type": "Consultation",
+    "reason": "Blood pressure check",
+    "status": "Scheduled",
+    "notes": "Routine blood pressure monitoring"
+  }
+]

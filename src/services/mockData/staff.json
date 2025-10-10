@@ -1,0 +1,90 @@
+[
+  {
+    "Id": 1,
+    "name": "Dr. John Smith",
+    "role": "Doctor",
+    "specialization": "Cardiology",
+    "department": "Cardiology",
+    "phone": "+1 (555) 111-2222",
+    "email": "j.smith@mediflow.com",
+    "availability": ["Mon-Fri: 8:00 AM - 6:00 PM"],
+    "status": "Available"
+  },
+  {
+    "Id": 2,
+    "name": "Dr. Sarah Williams",
+    "role": "Doctor",
+    "specialization": "Internal Medicine",
+    "department": "General Medicine",
+    "phone": "+1 (555) 222-3333",
+    "email": "s.williams@mediflow.com",
+    "availability": ["Mon-Fri: 9:00 AM - 5:00 PM"],
+    "status": "Busy"
+  },
+  {
+    "Id": 3,
+    "name": "Dr. Michael Johnson",
+    "role": "Surgeon",
+    "specialization": "Cardiac Surgery",
+    "department": "Surgery",
+    "phone": "+1 (555) 333-4444",
+    "email": "m.johnson@mediflow.com",
+    "availability": ["Mon-Thu: 7:00 AM - 7:00 PM", "Fri: 7:00 AM - 3:00 PM"],
+    "status": "On Call"
+  },
+  {
+    "Id": 4,
+    "name": "Nancy Brown",
+    "role": "Nurse",
+    "specialization": "Emergency Medicine",
+    "department": "Emergency",
+    "phone": "+1 (555) 444-5555",
+    "email": "n.brown@mediflow.com",
+    "availability": ["24/7 Shifts"],
+    "status": "Available"
+  },
+  {
+    "Id": 5,
+    "name": "Dr. Lisa Davis",
+    "role": "Specialist",
+    "specialization": "Pediatrics",
+    "department": "Pediatrics",
+    "phone": "+1 (555) 555-6666",
+    "email": "l.davis@mediflow.com",
+    "availability": ["Mon-Fri: 8:00 AM - 4:00 PM"],
+    "status": "Available"
+  },
+  {
+    "Id": 6,
+    "name": "James Wilson",
+    "role": "Technician",
+    "specialization": "Radiology",
+    "department": "Radiology",
+    "phone": "+1 (555) 666-7777",
+    "email": "j.wilson@mediflow.com",
+    "availability": ["Mon-Fri: 6:00 AM - 2:00 PM"],
+    "status": "Off Duty"
+  },
+  {
+    "Id": 7,
+    "name": "Dr. Amanda Taylor",
+    "role": "Doctor",
+    "specialization": "Orthopedics",
+    "department": "Orthopedics",
+    "phone": "+1 (555) 777-8888",
+    "email": "a.taylor@mediflow.com",
+    "availability": ["Tue-Sat: 9:00 AM - 5:00 PM"],
+    "status": "Available"
+  },
+  {
+    "Id": 8,
+    "name": "Mark Anderson",
+    "role": "Nurse",
+    "specialization": "ICU",
+    "department": "ICU",
+    "phone": "+1 (555) 888-9999",
+    "email": "m.anderson@mediflow.com",
+    "availability": ["12-hour shifts"],
+    "status": "Busy"
+  }
+]
