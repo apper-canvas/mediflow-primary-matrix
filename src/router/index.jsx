@@ -10,6 +10,7 @@ const Staff = lazy(() => import("@/components/pages/Staff"))
 const Departments = lazy(() => import("@/components/pages/Departments"))
 const Settings = lazy(() => import("@/components/pages/Settings"))
 const Bills = lazy(() => import("@/components/pages/Bills"))
+const LabTests = lazy(() => import("@/components/pages/LabTests"))
 const NotFound = lazy(() => import("@/components/pages/NotFound"))
 
 const mainRoutes = [
@@ -54,6 +55,10 @@ const mainRoutes = [
       </Suspense>
     )
 },
+  {
+    path: "lab-tests",
+    element: <Suspense fallback={<div>Loading.....</div>}><LabTests /></Suspense>
+  },
   {
     path: "bills",
     element: <Suspense fallback={<div>Loading.....</div>}><Bills /></Suspense>,

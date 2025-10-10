@@ -1,18 +1,19 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import StatCard from '@/components/molecules/StatCard'
-import AppointmentCard from '@/components/molecules/AppointmentCard'
-import PatientCard from '@/components/molecules/PatientCard'
-import Loading from '@/components/ui/Loading'
-import Error from '@/components/ui/Error'
-import Empty from '@/components/ui/Empty'
-import Button from '@/components/atoms/Button'
-import ApperIcon from '@/components/ApperIcon'
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/atoms/Card'
-import { patientService } from '@/services/api/patientService'
-import { appointmentService } from '@/services/api/appointmentService'
-import { staffService } from '@/services/api/staffService'
-import { departmentService } from '@/services/api/departmentService'
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/atoms/Card";
+import { patientService } from "@/services/api/patientService";
+import { appointmentService } from "@/services/api/appointmentService";
+import { staffService } from "@/services/api/staffService";
+import { departmentService } from "@/services/api/departmentService";
+import ApperIcon from "@/components/ApperIcon";
+import AppointmentCard from "@/components/molecules/AppointmentCard";
+import PatientCard from "@/components/molecules/PatientCard";
+import StatCard from "@/components/molecules/StatCard";
+import Error from "@/components/ui/Error";
+import Empty from "@/components/ui/Empty";
+import Loading from "@/components/ui/Loading";
+import Staff from "@/components/pages/Staff";
+import Button from "@/components/atoms/Button";
 
 const Dashboard = () => {
   const navigate = useNavigate()
@@ -28,13 +29,14 @@ const Dashboard = () => {
 
   const loadDashboardData = async () => {
     setLoading(true)
-    setError("")
+setError("")
     try {
-      const [patients, appointments, staff, departments] = await Promise.all([
+      const [patients, appointments, staff, departments, labTests] = await Promise.all([
         patientService.getAll(),
         appointmentService.getAll(),
         staffService.getAll(),
-        departmentService.getAll()
+        departmentService.getAll(),
+        import('@/services/api/labTestService').then(module => module.labTestService.getAll())
       ])
 
       // Calculate stats
@@ -56,13 +58,15 @@ const Dashboard = () => {
         .sort((a, b) => new Date(b.admissionDate) - new Date(a.admissionDate))
         .slice(0, 5)
 
-      setDashboardData({
+setDashboardData({
         totalPatients,
         admittedPatients,
         totalAppointments: appointments.filter(a => a.status === "Scheduled").length,
         totalBeds,
         availableBeds,
-        activeStaff
+        activeStaff,
+        totalLabTests: labTests.length,
+        pendingResults: labTests.filter(lt => lt.status === "Completed" && !lt.results).length
       })
       
       setTodayAppointments(todaysAppts)
@@ -123,7 +127,23 @@ const Dashboard = () => {
           icon="Building"
           color="purple"
           trend="up"
-          trendValue={`${dashboardData.totalBeds} total beds`}
+trendValue={`${dashboardData.totalBeds} total beds`}
+        />
+        <StatCard
+          title="Lab Tests"
+          value={dashboardData.totalLabTests || 0}
+          icon="TestTube"
+          color="purple"
+          trend="up"
+          trendValue="+5 today"
+        />
+        <StatCard
+          title="Pending Results" 
+          value={dashboardData.pendingResults || 0}
+          icon="Clock"
+          color="orange"
+          trend="down"
+          trendValue="-2 from yesterday"
         />
       </div>
 

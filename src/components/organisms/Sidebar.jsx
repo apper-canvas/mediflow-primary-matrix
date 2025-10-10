@@ -28,7 +28,13 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       name: "Staff",
       href: "/staff",
       icon: "UserCheck",
-      current: location.pathname === "/staff"
+current: location.pathname === "/staff"
+    },
+    {
+      name: "Lab Tests",
+      href: "/lab-tests",
+      icon: "TestTube",
+      current: location.pathname === "/lab-tests"
     },
 {
       name: "Departments",
