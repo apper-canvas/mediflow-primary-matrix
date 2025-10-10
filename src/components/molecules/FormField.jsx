@@ -43,6 +43,25 @@ const FormField = ({
           rows={4}
           className="flex w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 resize-none"
         />
+      ) : type === "date" ? (
+        <input
+          type="date"
+          value={value}
+          onChange={handleChange}
+          required={required}
+          className="flex w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200"
+        />
+      ) : type === "number" ? (
+        <input
+          type="number"
+          value={value}
+          onChange={handleChange}
+          placeholder={placeholder}
+          required={required}
+          min="0"
+          step="0.01"
+          className="flex w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200"
+        />
       ) : (
         <Input
           type={type}

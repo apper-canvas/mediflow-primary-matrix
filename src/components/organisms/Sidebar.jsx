@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
-import ApperIcon from '@/components/ApperIcon'
+import React, { useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
+import ApperIcon from "@/components/ApperIcon";
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
   const location = useLocation()
@@ -30,11 +30,17 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       icon: "UserCheck",
       current: location.pathname === "/staff"
     },
-    {
+{
       name: "Departments",
       href: "/departments",
       icon: "Building",
       current: location.pathname === "/departments"
+    },
+    {
+      name: "Bills",
+      href: "/bills",
+      icon: "Receipt",
+      current: location.pathname === "/bills"
     },
     {
       name: "Settings",
