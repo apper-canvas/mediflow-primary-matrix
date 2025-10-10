@@ -454,8 +454,10 @@ export default function LabTests() {
                     className="w-full"
                   >
                     <option value="">Select patient...</option>
-                    {patients.map(patient => (
-                      <option key={patient.Id} value={patient.Id}>{patient.name}</option>
+{patients.map(patient => (
+                      <option key={patient.Id} value={patient.Id}>
+                        {patient.name || `${patient.firstName || ''} ${patient.lastName || ''}`.trim() || patient.fullName || `Patient ${patient.Id}`}
+                      </option>
                     ))}
                   </Select>
                 </div>
