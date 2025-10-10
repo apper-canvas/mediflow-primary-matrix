@@ -17,13 +17,17 @@ export default {
         accent: {
           500: '#00A86B',
           600: '#059669',
-        },
-        success: '#00A86B',
-        warning: '#FF9500',
-        error: '#DC3545',
-        info: '#17A2B8',
+},
+      success: '#00A86B',
+      warning: '#FF9500',
+      error: '#DC3545',
+      info: '#17A2B8',
+      border: {
+        DEFAULT: '#e2e8f0',
+        border: '#e2e8f0',
       },
-      fontFamily: {
+    },
+    fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
       },
       animation: {

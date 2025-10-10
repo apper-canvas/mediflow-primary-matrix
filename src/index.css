@@ -5,12 +5,8 @@
 @tailwind utilities;
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-  
   body {
-    @apply bg-slate-50 font-sans;
+    @apply bg-slate-50 font-sans border-slate-200;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
@@ -34,11 +30,11 @@
 }
 
 .Toastify__toast--info {
-  @apply bg-info text-white;
+  @apply bg-blue-500 text-white;
 }
 
 .Toastify__toast--warning {
-  @apply bg-warning text-white;
+  @apply bg-yellow-500 text-white;
 }
 
 /* Custom scrollbar */
