@@ -41,12 +41,7 @@ const Header = ({ setSidebarOpen }) => {
             <span className="absolute -top-1 -right-1 h-4 w-4 bg-red-500 rounded-full flex items-center justify-center">
               <span className="text-xs font-medium text-white">3</span>
             </span>
-          </button>
-          
-          <Button className="flex items-center space-x-2">
-            <ApperIcon name="Plus" className="h-4 w-4" />
-            <span className="hidden sm:inline">Add Patient</span>
-          </Button>
+</button>
         </div>
       </div>
     </div>

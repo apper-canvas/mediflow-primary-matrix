@@ -89,10 +89,6 @@ setDashboardData({
           <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
           <p className="mt-1 text-gray-600">Welcome back! Here's what's happening in your hospital today.</p>
         </div>
-        <Button onClick={() => navigate("/patients")} className="flex items-center space-x-2">
-          <ApperIcon name="Plus" className="h-4 w-4" />
-          <span>Add Patient</span>
-        </Button>
       </div>
 
       {/* Stats Cards */}
