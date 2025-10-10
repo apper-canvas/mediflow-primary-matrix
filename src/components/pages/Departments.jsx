@@ -94,11 +94,15 @@ const Departments = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+<div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Departments</h1>
           <p className="mt-1 text-gray-600">Manage hospital departments and bed capacity</p>
         </div>
+        <Button variant="primary" size="md">
+          <ApperIcon name="Plus" size={20} />
+          Add Department
+        </Button>
       </div>
 
       {/* Filters */}
