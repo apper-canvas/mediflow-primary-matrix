@@ -220,8 +220,8 @@ const AppointmentModal = ({ appointment, isOpen, onClose, onSave }) => {
           )}
         </div>
 
-        {/* Footer */}
-        <div className="flex items-center justify-end space-x-3 p-6 border-t border-gray-200 bg-gray-50">
+{/* Footer */}
+        <div className="sticky bottom-0 flex items-center justify-end space-x-3 p-6 border-t border-gray-200 bg-gray-50 z-10">
           <Button
             variant="secondary"
             onClick={onClose}
@@ -232,7 +232,7 @@ const AppointmentModal = ({ appointment, isOpen, onClose, onSave }) => {
           <Button
             onClick={handleSave}
             disabled={loading || loadingData}
-            className="min-w-[120px]"
+            className="min-w-[120px] flex-shrink-0"
           >
             {loading ? (
               <>
