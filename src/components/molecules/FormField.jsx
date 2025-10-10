@@ -12,9 +12,13 @@ const FormField = ({
   error,
   className = ""
 }) => {
-  const handleChange = (e) => {
+const handleChange = (valueOrEvent) => {
     if (onChange) {
-      onChange(e.target.value)
+      // Handle direct value (from Select component) or event object (from standard inputs)
+      const value = valueOrEvent?.target?.value !== undefined 
+        ? valueOrEvent.target.value 
+        : valueOrEvent;
+      onChange(value);
     }
   }
 
