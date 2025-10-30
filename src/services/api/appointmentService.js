@@ -62,7 +62,14 @@ export const appointmentService = {
       
 if (!response.success) {
         console.error('Failed to fetch appointments:', response.message, 'Full response:', JSON.stringify(response))
-        toast.error(response.message)
+        // Check for connection pool exhaustion errors
+        const isConnectionError = response.message?.includes('connection slots') || 
+                                  response.exceptionMessage?.includes('connection slots') ||
+                                  response.message?.includes('connection')
+        const errorMessage = isConnectionError 
+          ? 'Service temporarily unavailable due to high load. Please try again in a moment.'
+          : response.message
+        toast.error(errorMessage)
         return []
       }
       
@@ -73,7 +80,11 @@ if (!response.success) {
       return response.data.map(transformToUI)
 } catch (error) {
       console.error('Error fetching appointments:', error?.message || error, 'Full error:', JSON.stringify(error, Object.getOwnPropertyNames(error)))
-      toast.error('Failed to load appointments')
+      // Provide more specific error messages based on error type
+      const errorMsg = error?.message?.includes('connection') || error?.message?.includes('timeout')
+        ? 'Service temporarily unavailable. Please try again shortly.'
+        : 'Failed to load appointments'
+      toast.error(errorMsg)
       return []
     }
   },
@@ -100,7 +111,14 @@ if (!response.success) {
       
 if (!response.success) {
         console.error(`Failed to fetch appointment ${id}:`, response.message, 'Full response:', JSON.stringify(response))
-        toast.error(response.message)
+        // Check for connection pool exhaustion errors
+        const isConnectionError = response.message?.includes('connection slots') || 
+                                  response.exceptionMessage?.includes('connection slots') ||
+                                  response.message?.includes('connection')
+        const errorMessage = isConnectionError 
+          ? 'Service temporarily unavailable due to high load. Please try again in a moment.'
+          : response.message
+        toast.error(errorMessage)
         return null
       }
       
@@ -109,9 +127,13 @@ if (!response.success) {
       }
       
       return transformToUI(response.data)
-    } catch (error) {
+} catch (error) {
 console.error(`Error fetching appointment ${id}:`, error?.message || error, 'Full error:', JSON.stringify(error, Object.getOwnPropertyNames(error)))
-      toast.error('Failed to load appointment')
+      // Provide more specific error messages based on error type
+      const errorMsg = error?.message?.includes('connection') || error?.message?.includes('timeout')
+        ? 'Service temporarily unavailable. Please try again shortly.'
+        : 'Failed to load appointment'
+      toast.error(errorMsg)
       return null
     }
   },
@@ -127,9 +149,16 @@ console.error(`Error fetching appointment ${id}:`, error?.message || error, 'Ful
       
       const response = await apperClient.createRecord('appointment_c', params)
       
-      if (!response.success) {
+if (!response.success) {
         console.error('Failed to create appointment:', response.message)
-        toast.error(response.message)
+        // Check for connection pool exhaustion errors
+        const isConnectionError = response.message?.includes('connection slots') || 
+                                  response.exceptionMessage?.includes('connection slots') ||
+                                  response.message?.includes('connection')
+        const errorMessage = isConnectionError 
+          ? 'Service temporarily unavailable due to high load. Please try again in a moment.'
+          : response.message
+        toast.error(errorMessage)
         return null
       }
       
@@ -159,9 +188,13 @@ console.error(`Error fetching appointment ${id}:`, error?.message || error, 'Ful
       }
       
       return null
-    } catch (error) {
+} catch (error) {
       console.error('Error creating appointment:', error?.message || error)
-      toast.error('Failed to create appointment')
+      // Provide more specific error messages based on error type
+      const errorMsg = error?.message?.includes('connection') || error?.message?.includes('timeout')
+        ? 'Service temporarily unavailable. Please try again shortly.'
+        : 'Failed to create appointment'
+      toast.error(errorMsg)
       return null
     }
   },
@@ -180,9 +213,16 @@ console.error(`Error fetching appointment ${id}:`, error?.message || error, 'Ful
       
       const response = await apperClient.updateRecord('appointment_c', params)
       
-      if (!response.success) {
+if (!response.success) {
         console.error('Failed to update appointment:', response.message)
-        toast.error(response.message)
+        // Check for connection pool exhaustion errors
+        const isConnectionError = response.message?.includes('connection slots') || 
+                                  response.exceptionMessage?.includes('connection slots') ||
+                                  response.message?.includes('connection')
+        const errorMessage = isConnectionError 
+          ? 'Service temporarily unavailable due to high load. Please try again in a moment.'
+          : response.message
+        toast.error(errorMessage)
         return null
       }
       
@@ -212,9 +252,13 @@ console.error(`Error fetching appointment ${id}:`, error?.message || error, 'Ful
       }
       
       return null
-    } catch (error) {
+} catch (error) {
       console.error('Error updating appointment:', error?.message || error)
-      toast.error('Failed to update appointment')
+      // Provide more specific error messages based on error type
+      const errorMsg = error?.message?.includes('connection') || error?.message?.includes('timeout')
+        ? 'Service temporarily unavailable. Please try again shortly.'
+        : 'Failed to update appointment'
+      toast.error(errorMsg)
       return null
     }
   },
@@ -230,9 +274,16 @@ console.error(`Error fetching appointment ${id}:`, error?.message || error, 'Ful
       
       const response = await apperClient.deleteRecord('appointment_c', params)
       
-      if (!response.success) {
+if (!response.success) {
         console.error('Failed to delete appointment:', response.message)
-        toast.error(response.message)
+        // Check for connection pool exhaustion errors
+        const isConnectionError = response.message?.includes('connection slots') || 
+                                  response.exceptionMessage?.includes('connection slots') ||
+                                  response.message?.includes('connection')
+        const errorMessage = isConnectionError 
+          ? 'Service temporarily unavailable due to high load. Please try again in a moment.'
+          : response.message
+        toast.error(errorMessage)
         return false
       }
       
@@ -257,9 +308,13 @@ console.error(`Error fetching appointment ${id}:`, error?.message || error, 'Ful
       }
       
       return false
-    } catch (error) {
+} catch (error) {
       console.error('Error deleting appointment:', error?.message || error)
-      toast.error('Failed to delete appointment')
+      // Provide more specific error messages based on error type
+      const errorMsg = error?.message?.includes('connection') || error?.message?.includes('timeout')
+        ? 'Service temporarily unavailable. Please try again shortly.'
+        : 'Failed to delete appointment'
+      toast.error(errorMsg)
       return false
     }
 }
