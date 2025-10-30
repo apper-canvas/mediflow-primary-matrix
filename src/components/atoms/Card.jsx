@@ -41,8 +41,10 @@ const CardTitle = forwardRef(({ className, ...props }, ref) => {
 CardTitle.displayName = "CardTitle"
 
 const CardContent = forwardRef(({ className, children, ...props }, ref) => {
-  // Handle NaN values in children to prevent React warnings
-  const safeChildren = (typeof children === 'number' && isNaN(children)) ? '' : children;
+  // Handle NaN, undefined, null, and Infinity values to prevent React warnings
+  const safeChildren = (typeof children === 'number' && (!isFinite(children) || children === undefined || children === null)) 
+    ? '' 
+    : children;
   
   return (
     <div 
