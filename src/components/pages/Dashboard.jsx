@@ -5,6 +5,7 @@ import { patientService } from "@/services/api/patientService";
 import { appointmentService } from "@/services/api/appointmentService";
 import { staffService } from "@/services/api/staffService";
 import { departmentService } from "@/services/api/departmentService";
+import { labTestService } from "@/services/api/labTestService";
 import ApperIcon from "@/components/ApperIcon";
 import AppointmentCard from "@/components/molecules/AppointmentCard";
 import PatientCard from "@/components/molecules/PatientCard";
@@ -31,12 +32,12 @@ const Dashboard = () => {
     setLoading(true)
 setError("")
     try {
-      const [patients, appointments, staff, departments, labTests] = await Promise.all([
+const [patients, appointments, staff, departments, labTests] = await Promise.all([
         patientService.getAll(),
         appointmentService.getAll(),
         staffService.getAll(),
         departmentService.getAll(),
-        import('@/services/api/labTestService').then(module => module.labTestService.getAll())
+        labTestService.getAll()
       ])
 
       // Calculate stats
