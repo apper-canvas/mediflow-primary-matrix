@@ -48,11 +48,21 @@ const CardContent = forwardRef(({ className, children, ...props }, ref) => {
     ? (isNaN(children) ? '0' : !isFinite(children) ? '∞' : String(children))
     : children;
   
+  // Filter out any NaN values from props to prevent DOM attribute warnings
+  const safeProps = Object.keys(props).reduce((acc, key) => {
+    const value = props[key];
+    if (typeof value === 'number' && isNaN(value)) {
+      return acc;
+    }
+    acc[key] = value;
+    return acc;
+  }, {});
+  
   return (
     <div 
       ref={ref} 
       className={cn("p-6 pt-0", className)} 
-      {...props}
+      {...safeProps}
     >
       {safeChildren}
     </div>
