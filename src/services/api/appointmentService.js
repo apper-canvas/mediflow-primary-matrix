@@ -60,8 +60,8 @@ export const appointmentService = {
       
       const response = await apperClient.fetchRecords('appointment_c', params)
       
-      if (!response.success) {
-        console.error('Failed to fetch appointments:', response.message)
+if (!response.success) {
+        console.error('Failed to fetch appointments:', response.message, 'Full response:', JSON.stringify(response))
         toast.error(response.message)
         return []
       }
@@ -71,8 +71,8 @@ export const appointmentService = {
       }
       
       return response.data.map(transformToUI)
-    } catch (error) {
-      console.error('Error fetching appointments:', error?.message || error)
+} catch (error) {
+      console.error('Error fetching appointments:', error?.message || error, 'Full error:', JSON.stringify(error, Object.getOwnPropertyNames(error)))
       toast.error('Failed to load appointments')
       return []
     }
@@ -98,8 +98,8 @@ export const appointmentService = {
       
       const response = await apperClient.getRecordById('appointment_c', id, params)
       
-      if (!response.success) {
-        console.error(`Failed to fetch appointment ${id}:`, response.message)
+if (!response.success) {
+        console.error(`Failed to fetch appointment ${id}:`, response.message, 'Full response:', JSON.stringify(response))
         toast.error(response.message)
         return null
       }
@@ -110,7 +110,7 @@ export const appointmentService = {
       
       return transformToUI(response.data)
     } catch (error) {
-      console.error(`Error fetching appointment ${id}:`, error?.message || error)
+console.error(`Error fetching appointment ${id}:`, error?.message || error, 'Full error:', JSON.stringify(error, Object.getOwnPropertyNames(error)))
       toast.error('Failed to load appointment')
       return null
     }
