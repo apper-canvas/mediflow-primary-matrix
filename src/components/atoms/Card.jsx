@@ -1,5 +1,5 @@
-import { forwardRef } from "react"
-import { cn } from "@/utils/cn"
+import React, { forwardRef } from "react";
+import { cn } from "@/utils/cn";
 
 const Card = forwardRef(({ className, ...props }, ref) => {
   return (
@@ -42,11 +42,25 @@ CardTitle.displayName = "CardTitle"
 
 const CardContent = forwardRef(({ className, children, ...props }, ref) => {
   // Handle NaN, undefined, null, and Infinity values to prevent React warnings
-const safeChildren = (children === null || children === undefined)
-    ? children
-    : typeof children === 'number'
-    ? (isNaN(children) ? '0' : !isFinite(children) ? '∞' : String(children))
-    : children;
+// Sanitize children to handle numeric edge cases
+  const safeChildren = React.useMemo(() => {
+    if (children === null || children === undefined) {
+      return children;
+    }
+    if (typeof children === 'number') {
+      if (isNaN(children)) return '0';
+      if (children === Infinity) return '∞';
+      if (children === -Infinity) return '-∞';
+      return String(children);
+    }
+    return children;
+  }, [children]);
+
+  return (
+    <div ref={ref} className={cn("p-6", className)} {...props}>
+      {safeChildren}
+    </div>
+  );
   
   // Filter out any NaN values from props to prevent DOM attribute warnings
   const safeProps = Object.keys(props).reduce((acc, key) => {
