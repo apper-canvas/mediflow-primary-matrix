@@ -1,9 +1,25 @@
-import ApperIcon from '@/components/ApperIcon'
-import Button from '@/components/atoms/Button'
+import { useAuth } from "@/layouts/Root";
+import { useSelector } from "react-redux";
+import React from "react";
+import ApperIcon from "@/components/ApperIcon";
+import Button from "@/components/atoms/Button";
 
-const Header = ({ setSidebarOpen }) => {
+function Header({ setSidebarOpen }) {
+  const { logout } = useAuth()
+  const { user } = useSelector(state => state.user)
+
+  const getInitials = () => {
+    if (user?.firstName && user?.lastName) {
+      return `${user.firstName[0]}${user.lastName[0]}`.toUpperCase()
+    }
+    if (user?.emailAddress) {
+      return user.emailAddress.substring(0, 2).toUpperCase()
+    }
+    return 'U'
+  }
+
   return (
-    <div className="sticky top-0 z-10 flex-shrink-0 flex h-16 bg-white shadow border-b border-gray-200">
+    <div className="sticky top-0 z-10 flex-shrink-0 flex h-16 bg-white shadow-sm border-b border-gray-200">
       <button
         type="button"
         className="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500 lg:hidden"
@@ -14,34 +30,45 @@ const Header = ({ setSidebarOpen }) => {
       
       <div className="flex-1 px-4 flex justify-between items-center">
         <div className="flex-1 flex">
-          <div className="w-full flex md:ml-0">
-            <label htmlFor="search-field" className="sr-only">
-              Search
-            </label>
-            <div className="relative w-full max-w-lg text-gray-400 focus-within:text-gray-600">
-              <div className="absolute inset-y-0 left-0 flex items-center pointer-events-none">
-                <ApperIcon name="Search" className="h-5 w-5" />
-              </div>
-              <input
-                id="search-field"
-                className="block w-full h-full pl-8 pr-3 py-2 border-transparent text-gray-900 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-0 focus:border-transparent"
-                placeholder="Search patients, appointments..."
-                type="search"
-              />
-            </div>
-          </div>
+          <h2 className="text-xl font-semibold text-gray-900 hidden sm:block">
+            Hospital Management System
+          </h2>
         </div>
         
-        <div className="ml-4 flex items-center md:ml-6 space-x-3">
-          <button
-            type="button"
-            className="bg-white p-2 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 relative"
+        <div className="ml-4 flex items-center md:ml-6 space-x-4">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="relative p-2"
           >
-            <ApperIcon name="Bell" className="h-6 w-6" />
-            <span className="absolute -top-1 -right-1 h-4 w-4 bg-red-500 rounded-full flex items-center justify-center">
-              <span className="text-xs font-medium text-white">3</span>
-            </span>
-</button>
+            <ApperIcon name="Bell" className="h-5 w-5" />
+            <span className="absolute top-1 right-1 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-white" />
+          </Button>
+          
+          <div className="relative flex items-center space-x-2">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="flex items-center space-x-2 p-2"
+            >
+              <div className="h-8 w-8 rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center text-white font-semibold">
+                {getInitials()}
+              </div>
+              <span className="hidden md:block text-sm font-medium text-gray-700">
+                {user?.firstName || user?.emailAddress || 'User'}
+              </span>
+            </Button>
+            
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={logout}
+              className="flex items-center space-x-1 p-2 text-red-600 hover:text-red-700 hover:bg-red-50"
+            >
+              <ApperIcon name="LogOut" className="h-5 w-5" />
+              <span className="hidden md:block text-sm font-medium">Logout</span>
+            </Button>
+          </div>
         </div>
       </div>
     </div>

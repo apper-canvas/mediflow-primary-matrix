@@ -18,7 +18,7 @@ function App() {
         pauseOnHover
         theme="light"
         style={{ zIndex: 9999 }}
-      />
+/>
     </>
   )
 }

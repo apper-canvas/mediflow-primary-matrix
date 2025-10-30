@@ -1,6 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
 import Layout from '@/components/organisms/Layout'
+import Root from '@/layouts/Root'
+import { getRouteConfig } from './route.utils'
 
 // Lazy load page components
 const Dashboard = lazy(() => import("@/components/pages/Dashboard"))
@@ -83,9 +85,39 @@ const mainRoutes = [
 
 const routes = [
   {
-    path: "/",
-    element: <Layout />,
-    children: [...mainRoutes]
+path: '/',
+    element: <Root />,
+    children: [
+      {
+        path: 'login',
+        element: lazy(() => import('@/components/pages/Login'))
+      },
+      {
+        path: 'signup',
+        element: lazy(() => import('@/components/pages/Signup'))
+      },
+      {
+        path: 'callback',
+        element: lazy(() => import('@/components/pages/Callback'))
+      },
+      {
+        path: 'error',
+        element: lazy(() => import('@/components/pages/ErrorPage'))
+      },
+      {
+        path: 'reset-password/:appId/:fields',
+        element: lazy(() => import('@/components/pages/ResetPassword'))
+      },
+      {
+        path: 'prompt-password/:appId/:emailAddress/:provider',
+        element: lazy(() => import('@/components/pages/PromptPassword'))
+      },
+      {
+        path: '/',
+        element: <Layout />,
+        children: [...mainRoutes]
+      }
+    ]
   }
 ]
 
