@@ -39,17 +39,17 @@ const Departments = () => {
     }
   }
 
-  const filterDepartments = () => {
+const filterDepartments = () => {
     let filtered = departments
 
     if (typeFilter) {
-      filtered = filtered.filter(dept => dept.type === typeFilter)
+      filtered = filtered.filter(dept => dept.type_c === typeFilter)
     }
 
     if (occupancyFilter) {
       filtered = filtered.filter(dept => {
-        const occupancyRate = dept.totalBeds > 0 
-          ? ((dept.totalBeds - dept.availableBeds) / dept.totalBeds * 100)
+        const occupancyRate = dept.total_beds_c > 0 
+          ? ((dept.total_beds_c - dept.available_beds_c) / dept.total_beds_c * 100)
           : 0
         
         switch (occupancyFilter) {
@@ -68,9 +68,9 @@ const Departments = () => {
     setFilteredDepartments(filtered)
   }
 
-  const getDepartmentStats = () => {
-    const totalBeds = departments.reduce((sum, dept) => sum + dept.totalBeds, 0)
-    const availableBeds = departments.reduce((sum, dept) => sum + dept.availableBeds, 0)
+const getDepartmentStats = () => {
+    const totalBeds = departments.reduce((sum, dept) => sum + (dept.total_beds_c || 0), 0)
+    const availableBeds = departments.reduce((sum, dept) => sum + (dept.available_beds_c || 0), 0)
     const occupancyRate = totalBeds > 0 ? ((totalBeds - availableBeds) / totalBeds * 100).toFixed(1) : 0
     
     return {
@@ -88,9 +88,8 @@ const Departments = () => {
   if (loading) return <Loading />
   if (error) return <Error message={error} onRetry={loadDepartments} />
 
-  const stats = getDepartmentStats()
-  const departmentTypes = [...new Set(departments.map(d => d.type))].filter(Boolean)
-
+const stats = getDepartmentStats()
+  const departmentTypes = [...new Set(departments.map(d => d.type_c))].filter(Boolean)
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -217,9 +216,9 @@ const Departments = () => {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            {departments.map((dept) => {
-              const occupancyRate = dept.totalBeds > 0 
-                ? ((dept.totalBeds - dept.availableBeds) / dept.totalBeds * 100)
+{departments.map((dept) => {
+              const occupancyRate = dept.total_beds_c > 0 
+                ? ((dept.total_beds_c - dept.available_beds_c) / dept.total_beds_c * 100)
                 : 0
               
               return (
@@ -228,16 +227,16 @@ const Departments = () => {
                     <div className="p-2 bg-primary-100 rounded-lg">
                       <ApperIcon 
                         name={
-                          dept.type === "Emergency" ? "Zap" :
-                          dept.type === "Surgery" ? "Scissors" :
-                          dept.type === "ICU" ? "Shield" : "Building"
+                          dept.type_c === "Emergency" ? "Zap" :
+                          dept.type_c === "Surgery" ? "Scissors" :
+                          dept.type_c === "ICU" ? "Shield" : "Building"
                         } 
                         className="h-4 w-4 text-primary-600" 
                       />
                     </div>
                     <div>
-                      <h4 className="font-medium text-gray-900">{dept.name}</h4>
-                      <p className="text-sm text-gray-600">{dept.availableBeds} of {dept.totalBeds} beds available</p>
+                      <h4 className="font-medium text-gray-900">{dept.name_c}</h4>
+                      <p className="text-sm text-gray-600">{dept.available_beds_c} of {dept.total_beds_c} beds available</p>
                     </div>
                   </div>
                   
