@@ -65,7 +65,7 @@ const CardContent = forwardRef(({ className, children, ...props }, ref) => {
     
     // Handle numbers - filter out NaN completely
     if (typeof value === 'number') {
-      return Number.isNaN(value) ? undefined : value;
+return Number.isNaN(value) ? "" : value;
     }
     
     // Handle arrays - recursively sanitize each element
