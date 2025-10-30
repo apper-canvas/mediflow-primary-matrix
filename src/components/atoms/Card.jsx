@@ -43,6 +43,18 @@ CardTitle.displayName = "CardTitle"
 const CardContent = forwardRef(({ className, children, ...props }, ref) => {
   // Handle NaN, undefined, null, and Infinity values to prevent React warnings
   // Sanitize children to handle numeric edge cases
+// Sanitize props to remove any NaN values
+  const sanitizeProps = (props) => {
+    return Object.entries(props).reduce((acc, [key, value]) => {
+      // Filter out NaN values from props
+      if (typeof value === 'number' && isNaN(value)) {
+        return acc;
+      }
+      acc[key] = value;
+      return acc;
+    }, {});
+  };
+
   const safeChildren = React.useMemo(() => {
     if (children === null || children === undefined) {
       return children;
