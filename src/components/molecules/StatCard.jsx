@@ -10,13 +10,25 @@ const StatCard = ({ title, value, icon, trend, trendValue, color = "blue" }) => 
     purple: "bg-purple-50 text-purple-600"
   }
 
+  // Helper to safely format numeric values and prevent NaN warnings
+  const formatValue = (val) => {
+    if (val === null || val === undefined) return '0';
+    if (typeof val === 'number') {
+      if (Number.isNaN(val)) return '0';
+      if (val === Infinity) return '∞';
+      if (val === -Infinity) return '-∞';
+      return val;
+    }
+    return val;
+  }
+
   return (
     <Card className="hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1">
       <CardContent className="p-6">
         <div className="flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-gray-600 mb-1">{title}</p>
-            <p className="text-3xl font-bold text-gray-900">{value}</p>
+            <p className="text-3xl font-bold text-gray-900">{formatValue(value)}</p>
             {trend && (
               <div className="flex items-center mt-2">
                 <ApperIcon 
