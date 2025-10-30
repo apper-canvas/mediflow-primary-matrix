@@ -42,10 +42,12 @@ CardTitle.displayName = "CardTitle"
 
 const CardContent = forwardRef(({ className, children, ...props }, ref) => {
   // Handle NaN, undefined, null, and Infinity values to prevent React warnings
-  const safeChildren = (children === null || children === undefined) 
+  const safeChildren = typeof children === 'number' && isNaN(children)
+    ? '0'
+    : (children === null || children === undefined) 
     ? children 
     : typeof children === 'number'
-    ? (isNaN(children) ? '0' : !isFinite(children) ? '∞' : String(children))
+    ? (!isFinite(children) ? '∞' : String(children))
     : children;
   
   // Filter out any NaN values from props to prevent DOM attribute warnings
