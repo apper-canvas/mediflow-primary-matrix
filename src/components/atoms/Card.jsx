@@ -47,7 +47,8 @@ const CardContent = forwardRef(({ className, children, ...props }, ref) => {
       return children;
     }
     if (typeof children === 'number') {
-      if (isNaN(children)) return '0';
+      // Use Number.isNaN for accurate NaN detection (prevents false positives)
+      if (Number.isNaN(children)) return '0';
       if (children === Infinity) return '∞';
       if (children === -Infinity) return '-∞';
       return String(children);
@@ -55,13 +56,45 @@ const CardContent = forwardRef(({ className, children, ...props }, ref) => {
     return children;
   }, [children]);
 
+  // Recursively sanitize props to handle nested objects/arrays with NaN values
+  const sanitizeValue = (value) => {
+    // Handle null/undefined
+    if (value === null || value === undefined) {
+      return value;
+    }
+    
+    // Handle numbers - filter out NaN completely
+    if (typeof value === 'number') {
+      return Number.isNaN(value) ? undefined : value;
+    }
+    
+    // Handle arrays - recursively sanitize each element
+    if (Array.isArray(value)) {
+      return value
+        .map(sanitizeValue)
+        .filter(v => v !== undefined);
+    }
+    
+    // Handle objects - recursively sanitize each property
+    if (typeof value === 'object') {
+      return Object.keys(value).reduce((acc, key) => {
+        const sanitized = sanitizeValue(value[key]);
+        if (sanitized !== undefined) {
+          acc[key] = sanitized;
+        }
+        return acc;
+      }, {});
+    }
+    
+    return value;
+  };
+
   // Filter out any NaN values from props to prevent DOM attribute warnings
   const safeProps = Object.keys(props).reduce((acc, key) => {
-    const value = props[key];
-    if (typeof value === 'number' && isNaN(value)) {
-      return acc;
+    const sanitized = sanitizeValue(props[key]);
+    if (sanitized !== undefined) {
+      acc[key] = sanitized;
     }
-    acc[key] = value;
     return acc;
   }, {});
   
