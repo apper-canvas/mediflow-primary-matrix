@@ -35,11 +35,9 @@ const Appointments = () => {
   const loadAppointments = async () => {
     setLoading(true)
     setError("")
-    try {
+try {
       const data = await appointmentService.getAll()
       setAppointments(data)
-    } catch (err) {
-      setError("Failed to load appointments")
     } finally {
       setLoading(false)
     }
